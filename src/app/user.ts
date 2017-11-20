@@ -1,7 +1,9 @@
 import { Injectable } from "@angular/core";
+import { Activity } from "./activity";
 
 export class User {
   public token: string;
+  public activity: Array<Activity>;
   constructor(
     public email: string,
     public password?: string,

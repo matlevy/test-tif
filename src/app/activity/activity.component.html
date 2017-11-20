@@ -1,0 +1,10 @@
+<div class="list-group">
+  <a href="javascript://" *ngFor="let item of authenticationService.user.activity" 
+    class="list-group-item list-group-item-action flex-column align-items-start">
+    <div class="d-flex w-100 justify-content-between">
+      <h5 class="mb-1">Login</h5>
+      <small>{{ item.login.calendar() }}</small>
+    </div>
+    <small>Logged Out: {{ item.logout.calendar() }}</small>
+  </a>
+</div>

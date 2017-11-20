@@ -5,6 +5,7 @@ import { User, UserFactory } from '../user';
 import { LocalStorageService } from 'angular-2-local-storage';
 import { AlertsService } from '../alerts.service';
 import { Router } from '@angular/router';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-login',
@@ -22,6 +23,7 @@ export class LoginComponent implements OnInit {
     protected localStorage: LocalStorageService,
     protected userFactory: UserFactory,
     protected alertsService: AlertsService,
+    protected userService: UserService,
     protected router: Router
   ) {}
 
@@ -55,6 +57,10 @@ export class LoginComponent implements OnInit {
             this.localStorage.remove('user');
           }
           this.authenticationService.setUser(user);
+          this.userService.getActivity(user).subscribe(
+            (d) => {
+              user.activity = d;
+          });
           this.router.navigate(['welcome']);
         },
         (error) => {

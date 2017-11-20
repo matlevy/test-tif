@@ -17,6 +17,9 @@ import { AlertsComponent } from './alerts/alerts.component';
 import { AlertsService } from './alerts.service';
 import { NavComponent } from './nav/nav.component';
 import { AuthGuardService } from './auth-guard.service';
+import { ActivityComponent } from './activity/activity.component';
+import { ActivityFactory } from './activity';
+import { UserHttpService } from './user-http.service';
 
 const ROUTES = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -42,7 +45,8 @@ const ROUTES = [
     ForgotPasswordComponent,
     WelcomeComponent,
     AlertsComponent,
-    NavComponent
+    NavComponent,
+    ActivityComponent
   ],
   imports: [
     BrowserModule,
@@ -58,7 +62,8 @@ const ROUTES = [
     UserFactory,
     AuthenticationService,
     AuthenticationHttpService,
-    UserService, AlertsService, AuthGuardService
+    UserService, AlertsService, AuthGuardService,
+    ActivityFactory, UserHttpService
   ],
   bootstrap: [ AppComponent ]
 })
