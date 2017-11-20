@@ -25,6 +25,7 @@ export class LoginComponent implements OnInit {
     protected router: Router
   ) {}
 
+  /** Retrieves the User data from the local storage */
   retrieveUser(): User {
     if (this.localStorage.get('user')) {
       const user: any = JSON.parse(this.localStorage.get('user'));
@@ -41,6 +42,9 @@ export class LoginComponent implements OnInit {
     });
   }
 
+  /**
+   * Performs the login action for the User calling the relevant services
+   */
   login( email: string, password: string ): void {
     this.authenticationService.authenticate(email, password)
       .subscribe(

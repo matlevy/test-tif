@@ -22,7 +22,7 @@ export class MockAlertService {
   notify(message: string) {}
 }
 
-fdescribe('ForgotPasswordComponent', () => {
+describe('ForgotPasswordComponent', () => {
   let component: ForgotPasswordComponent;
   let fixture: ComponentFixture<ForgotPasswordComponent>;
   let alertService: AlertsService;
