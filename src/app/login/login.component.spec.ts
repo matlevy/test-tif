@@ -9,6 +9,7 @@ import { AlertsService } from '../alerts.service';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { ReactiveFormsModule } from '@angular/forms';
+import { UserService } from '../user.service';
 
 @Injectable()
 export class MockAuthenticationService {
@@ -42,6 +43,10 @@ export class MockRouterService {
   navigate(loc: Array<any>) {}
 }
 
+@Injectable()
+export class MockUserService {
+  getActivity(user: User) { return Observable.of([{}]) }
+}
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
@@ -57,6 +62,7 @@ describe('LoginComponent', () => {
         { provide: UserFactory, useClass: MockUserFactory },
         { provide: AlertsService, useClass: MockAlertService },
         { provide: Router, useClass: MockRouterService },
+        { provide: UserService, useClass: MockUserService }
       ],
       imports: [
         ReactiveFormsModule
