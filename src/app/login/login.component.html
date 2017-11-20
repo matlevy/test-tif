@@ -1,0 +1,16 @@
+<form [formGroup]="loginForm">
+  <div class="login-form">
+    <div class="form-group">
+        <label for="email">Email address</label>
+        <input type="email" class="form-control" formControlName="email" aria-describedby="emailHelp" placeholder="e.g. me@me.com">
+    </div>
+    <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" class="form-control" formControlName="password" placeholder="Password">
+    </div>
+    <div class="form-check">
+      <label class="form-check-label"><input type="checkbox" class="form-check-input">&nbsp;Remember Me</label>
+    </div>
+  </div>
+  <button [disabled]="!loginForm.valid" class="btn btn-primary" type="submit" (click)="authenticate()">Login</button>
+</form>
