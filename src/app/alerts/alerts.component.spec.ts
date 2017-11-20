@@ -8,7 +8,7 @@ export class MockAlertService {
 
 }
 
-xdescribe('AlertsComponent', () => {
+describe('AlertsComponent', () => {
   let component: AlertsComponent;
   let fixture: ComponentFixture<AlertsComponent>;
 
