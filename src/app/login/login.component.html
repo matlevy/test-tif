@@ -1,7 +1,7 @@
 <form [formGroup]="loginForm">
   <div class="login-form">
     <div class="form-group">
-        <label for="email">Email address</label>
+        <label for="email">Email</label>
         <input type="email" class="form-control" formControlName="email" aria-describedby="emailHelp" placeholder="e.g. me@me.com">
     </div>
     <div class="form-group">
@@ -13,5 +13,5 @@
     </div>
   </div>
   <button [disabled]="!loginForm.valid" class="btn btn-primary btn-block" type="submit" (click)="authenticate()">Login</button>
-  <button type="button" class="btn btn-forgot btn-block">I forgot my password</button>
+  <a routerLink="/forgot" class="btn btn-forgot btn-block">I forgot my password</a>
 </form>

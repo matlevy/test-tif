@@ -19,9 +19,7 @@ export class LoginComponent implements OnInit {
     protected formBuilder: FormBuilder,
     protected localStorage: LocalStorageService,
     protected userFactory: UserFactory
-  ) {
-    
-  }
+  ) {}
 
   retrieveUser(): User {
     if (this.localStorage.get('user')) {

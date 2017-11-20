@@ -11,6 +11,18 @@ import { UserFactory } from './user';
 import { AuthenticationService } from './authentication.service';
 import { AuthenticationHttpService } from './authentication-http.service';
 import { LocalStorageModule } from 'angular-2-local-storage/dist/local-storage.module';
+import { RouterModule } from '@angular/router';
+
+const ROUTES = [
+  {
+    path: 'login',
+    component: LoginComponent
+  },
+  {
+    path: 'forgot',
+    component: ForgotPasswordComponent
+  }
+];
 
 @NgModule({
   declarations: [
@@ -27,6 +39,7 @@ import { LocalStorageModule } from 'angular-2-local-storage/dist/local-storage.m
         prefix: 'tsc',
         storageType: 'localStorage'
     }),
+    RouterModule.forRoot( ROUTES )
   ],
   providers: [
     UserFactory,
