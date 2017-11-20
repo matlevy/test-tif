@@ -19,6 +19,7 @@ import { NavComponent } from './nav/nav.component';
 import { AuthGuardService } from './auth-guard.service';
 
 const ROUTES = [
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
   {
     path: 'login',
     component: LoginComponent

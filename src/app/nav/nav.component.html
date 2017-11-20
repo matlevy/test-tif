@@ -1,5 +1,7 @@
 <nav class="navbar sticky-top navbar-light bg-light">
-  <a routerLink="/welcome" *ngIf="authenticationService.user">Home</a>
-  <a routerLink="/login" *ngIf="authenticationService.user==null">Login</a>
-  <a (click)="logout()" *ngIf="authenticationService.user">Logout</a>
+  <ul class="nav nav-pills">
+      <li class="nav-item active" *ngIf="authenticationService.user"><a routerLink="/welcome">Home</a></li>
+      <li class="nav-item active" *ngIf="authenticationService.user==null"><a routerLink="/login" >Login</a></li>
+      <li class="nav-item active" *ngIf="authenticationService.user"><a (click)="logout()">Logout</a></li>
+  </ul>
 </nav>
