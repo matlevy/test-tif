@@ -20,4 +20,11 @@ export class AuthenticationService {
         return d.json();
       });
   }
+
+  sendPassword( email: string ): Observable<Response> {
+    return this.authHttp.retrieve(email)
+      .map( (d: Response) => {
+        return d.json();
+      });
+  }
 }

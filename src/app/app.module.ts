@@ -12,6 +12,7 @@ import { AuthenticationService } from './authentication.service';
 import { AuthenticationHttpService } from './authentication-http.service';
 import { LocalStorageModule } from 'angular-2-local-storage/dist/local-storage.module';
 import { RouterModule } from '@angular/router';
+import { UserService } from './user.service';
 
 const ROUTES = [
   {
@@ -44,7 +45,8 @@ const ROUTES = [
   providers: [
     UserFactory,
     AuthenticationService,
-    AuthenticationHttpService
+    AuthenticationHttpService,
+    UserService
   ],
   bootstrap: [ AppComponent ]
 })

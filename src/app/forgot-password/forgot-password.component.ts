@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-forgot-password',
@@ -12,7 +13,8 @@ export class ForgotPasswordComponent implements OnInit {
   sentPassword: boolean;
 
   constructor(
-    protected formBuilder: FormBuilder
+    protected formBuilder: FormBuilder,
+    protected userService: UserService
   ) { }
 
   createForm(): void {
@@ -22,7 +24,16 @@ export class ForgotPasswordComponent implements OnInit {
   }
 
   sendPassword(): void {
-    this.sentPassword = true;
+    this.userService.retrievePassword(this.retrieveForm.get('email').value)
+      .subscribe(
+        (success) => {
+          this.sentPassword = true;
+        },
+        (fail) => {
+          // TODO: ERROR HANDLE
+          console.log(fail);
+        }
+      );
   }
 
   ngOnInit() {

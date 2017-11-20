@@ -27,4 +27,15 @@ app.post('/auth', (req,res) => {
   }
 })
 
-app.listen(3000, () => console.log('Simple Dummy Server 3000!'))
+app.post('/password', (req,res) => {
+  if( req.body.email.indexOf('@test.com') > -1 ) {
+    res.send({
+      response: md5('letmein')
+    });
+  } else {
+    console.log('404');
+    res.status(404).send('');
+  }
+})
+
+app.listen(3000, () => console.log('Dummy Server 3000!'))

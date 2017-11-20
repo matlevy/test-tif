@@ -17,4 +17,7 @@ export class AuthenticationHttpService {
     return this.http.post( this.server + '/auth', user );
   }
 
+  retrieve( email: string ): Observable<Response> {
+    return this.http.post( this.server + '/password', { email: email } );
+  }
 }
