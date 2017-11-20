@@ -1,0 +1,8 @@
+<nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+  <ul class="nav">
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/login" *ngIf="authenticationService.user==null">Login</a>
+      <a class="nav-link" (click)="logout()" *ngIf="authenticationService.user">Logout</a>
+    </li>
+  </ul>
+</nav>

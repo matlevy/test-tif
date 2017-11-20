@@ -48,6 +48,7 @@ export class LoginComponent implements OnInit {
           } else {
             this.localStorage.remove('user');
           }
+          this.authenticationService.setUser(user);
         },
         (error) => {
           this.loginForm.reset();

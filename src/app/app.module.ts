@@ -15,6 +15,7 @@ import { RouterModule } from '@angular/router';
 import { UserService } from './user.service';
 import { AlertsComponent } from './alerts/alerts.component';
 import { AlertsService } from './alerts.service';
+import { NavComponent } from './nav/nav.component';
 
 const ROUTES = [
   {
@@ -33,7 +34,8 @@ const ROUTES = [
     LoginComponent,
     ForgotPasswordComponent,
     WelcomeComponent,
-    AlertsComponent
+    AlertsComponent,
+    NavComponent
   ],
   imports: [
     BrowserModule,

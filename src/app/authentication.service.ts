@@ -8,6 +8,8 @@ import { Observable } from 'rxjs/Observable';
 @Injectable()
 export class AuthenticationService {
 
+  user: User;
+
   constructor(
     protected userFactory: UserFactory,
     protected authHttp: AuthenticationHttpService
@@ -19,6 +21,14 @@ export class AuthenticationService {
       .map( (d: Response) => {
         return d.json();
       });
+  }
+
+  setUser( user: User ): void {
+    this.user = user;
+  }
+
+  logout(): void {
+    this.user = null;
   }
 
   sendPassword( email: string ): Observable<Response> {
