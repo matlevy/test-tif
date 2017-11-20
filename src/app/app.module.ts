@@ -13,6 +13,8 @@ import { AuthenticationHttpService } from './authentication-http.service';
 import { LocalStorageModule } from 'angular-2-local-storage/dist/local-storage.module';
 import { RouterModule } from '@angular/router';
 import { UserService } from './user.service';
+import { AlertsComponent } from './alerts/alerts.component';
+import { AlertsService } from './alerts.service';
 
 const ROUTES = [
   {
@@ -30,7 +32,8 @@ const ROUTES = [
     AppComponent,
     LoginComponent,
     ForgotPasswordComponent,
-    WelcomeComponent
+    WelcomeComponent,
+    AlertsComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +49,7 @@ const ROUTES = [
     UserFactory,
     AuthenticationService,
     AuthenticationHttpService,
-    UserService
+    UserService, AlertsService
   ],
   bootstrap: [ AppComponent ]
 })

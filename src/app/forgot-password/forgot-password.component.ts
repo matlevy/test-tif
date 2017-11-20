@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../user.service';
+import { AlertsService } from '../alerts.service';
 
 @Component({
   selector: 'app-forgot-password',
@@ -14,7 +15,8 @@ export class ForgotPasswordComponent implements OnInit {
 
   constructor(
     protected formBuilder: FormBuilder,
-    protected userService: UserService
+    protected userService: UserService,
+    protected alertsService: AlertsService
   ) { }
 
   createForm(): void {
@@ -30,13 +32,14 @@ export class ForgotPasswordComponent implements OnInit {
           this.sentPassword = true;
         },
         (fail) => {
-          // TODO: ERROR HANDLE
-          console.log(fail);
+          this.alertsService.clear();
+          this.alertsService.notify('Sorry.. There is no user with that email.');
         }
       );
   }
 
   ngOnInit() {
+    this.alertsService.clear();
     this.sentPassword = false;
     this.createForm();
   }

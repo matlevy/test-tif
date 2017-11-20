@@ -3,6 +3,7 @@ import { AuthenticationService } from '../authentication.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { User, UserFactory } from '../user';
 import { LocalStorageService } from 'angular-2-local-storage';
+import { AlertsService } from '../alerts.service';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +19,8 @@ export class LoginComponent implements OnInit {
     protected authenticationService: AuthenticationService,
     protected formBuilder: FormBuilder,
     protected localStorage: LocalStorageService,
-    protected userFactory: UserFactory
+    protected userFactory: UserFactory,
+    protected alertsService: AlertsService
   ) {}
 
   retrieveUser(): User {
@@ -49,7 +51,8 @@ export class LoginComponent implements OnInit {
         },
         (error) => {
           this.loginForm.reset();
-          // TODO: display error
+          this.alertsService.clear();
+          this.alertsService.notify('Invalid email or password');
         }
       );
   }
@@ -59,6 +62,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.alertsService.clear();
     this.user = this.retrieveUser();
     this.createForm();
   }
