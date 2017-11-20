@@ -4,6 +4,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { User, UserFactory } from '../user';
 import { LocalStorageService } from 'angular-2-local-storage';
 import { AlertsService } from '../alerts.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -20,7 +21,8 @@ export class LoginComponent implements OnInit {
     protected formBuilder: FormBuilder,
     protected localStorage: LocalStorageService,
     protected userFactory: UserFactory,
-    protected alertsService: AlertsService
+    protected alertsService: AlertsService,
+    protected router: Router
   ) {}
 
   retrieveUser(): User {
@@ -49,6 +51,7 @@ export class LoginComponent implements OnInit {
             this.localStorage.remove('user');
           }
           this.authenticationService.setUser(user);
+          this.router.navigate(['welcome']);
         },
         (error) => {
           this.loginForm.reset();

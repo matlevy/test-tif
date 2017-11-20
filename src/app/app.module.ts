@@ -16,6 +16,7 @@ import { UserService } from './user.service';
 import { AlertsComponent } from './alerts/alerts.component';
 import { AlertsService } from './alerts.service';
 import { NavComponent } from './nav/nav.component';
+import { AuthGuardService } from './auth-guard.service';
 
 const ROUTES = [
   {
@@ -25,6 +26,11 @@ const ROUTES = [
   {
     path: 'forgot',
     component: ForgotPasswordComponent
+  },
+  {
+    path: 'welcome',
+    component: WelcomeComponent,
+    canActivate: [AuthGuardService]
   }
 ];
 
@@ -51,7 +57,7 @@ const ROUTES = [
     UserFactory,
     AuthenticationService,
     AuthenticationHttpService,
-    UserService, AlertsService
+    UserService, AlertsService, AuthGuardService
   ],
   bootstrap: [ AppComponent ]
 })
