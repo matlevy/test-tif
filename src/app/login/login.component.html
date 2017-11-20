@@ -9,8 +9,9 @@
         <input type="password" class="form-control" formControlName="password" placeholder="Password">
     </div>
     <div class="form-check">
-      <label class="form-check-label"><input type="checkbox" class="form-check-input">&nbsp;Remember Me</label>
+      <label class="form-check-label"><input type="checkbox" class="form-check-input" formControlName="storeUser">&nbsp;Remember Me</label>
     </div>
   </div>
-  <button [disabled]="!loginForm.valid" class="btn btn-primary" type="submit" (click)="authenticate()">Login</button>
+  <button [disabled]="!loginForm.valid" class="btn btn-primary btn-block" type="submit" (click)="authenticate()">Login</button>
+  <button type="button" class="btn btn-forgot btn-block">I forgot my password</button>
 </form>

@@ -10,8 +10,7 @@ import { WelcomeComponent } from './welcome/welcome.component';
 import { UserFactory } from './user';
 import { AuthenticationService } from './authentication.service';
 import { AuthenticationHttpService } from './authentication-http.service';
-
-
+import { LocalStorageModule } from 'angular-2-local-storage/dist/local-storage.module';
 
 @NgModule({
   declarations: [
@@ -23,7 +22,11 @@ import { AuthenticationHttpService } from './authentication-http.service';
   imports: [
     BrowserModule,
     HttpModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    LocalStorageModule.withConfig({
+        prefix: 'tsc',
+        storageType: 'localStorage'
+    }),
   ],
   providers: [
     UserFactory,

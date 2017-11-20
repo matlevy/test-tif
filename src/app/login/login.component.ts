@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../authentication.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { User } from '../user';
+import { User, UserFactory } from '../user';
+import { LocalStorageService } from 'angular-2-local-storage';
 
 @Component({
   selector: 'app-login',
@@ -11,29 +12,46 @@ import { User } from '../user';
 export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
+  user: User;
 
   constructor(
     protected authenticationService: AuthenticationService,
-    protected formBuilder: FormBuilder
+    protected formBuilder: FormBuilder,
+    protected localStorage: LocalStorageService,
+    protected userFactory: UserFactory
   ) {
-    this.createForm();
+    
+  }
+
+  retrieveUser(): User {
+    if (this.localStorage.get('user')) {
+      const user: any = JSON.parse(this.localStorage.get('user'));
+      return this.userFactory.create(user.email, user.password);
+    }
+    return null;
   }
 
   createForm(): void {
     this.loginForm = this.formBuilder.group({
-      email: ['test@test.com', Validators.email],
-      password: ['password', Validators.required]
+      email: [ this.user ? this.user.email : '', Validators.email],
+      password: [ this.user ? this.user.password : '', Validators.required],
+      storeUser: [ this.user ]
     });
   }
 
   login( email: string, password: string ): void {
-    this.authenticationService.authenticate( email, password)
+    this.authenticationService.authenticate(email, password)
       .subscribe(
         (user: User) => {
-          console.log(user);
+          if ( this.loginForm.get('storeUser').value ) {
+            this.localStorage.set('user', JSON.stringify({ email: email, password: password }));
+          } else {
+            this.localStorage.remove('user');
+          }
         },
         (error) => {
-          console.log(error);
+          this.loginForm.reset();
+          // TODO: display error
         }
       );
   }
@@ -42,6 +60,9 @@ export class LoginComponent implements OnInit {
     this.login( this.loginForm.get('email').value, this.loginForm.get('password').value );
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.user = this.retrieveUser();
+    this.createForm();
+  }
 
 }
