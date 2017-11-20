@@ -25,6 +25,10 @@ export class ForgotPasswordComponent implements OnInit {
     });
   }
 
+  /** 
+   * Tells the User Service to retrieve the users password given there is an email and
+   * updates the confirmation flag
+   */
   sendPassword(): void {
     this.userService.retrievePassword(this.retrieveForm.get('email').value)
       .subscribe(

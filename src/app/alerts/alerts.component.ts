@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AlertsService } from '../alerts.service';
 import { Output } from '@angular/core';
 
+/** The AlertsComponent will subecribe to Alerts sent from the AlertsService and render them within the application view */
 @Component({
   selector: 'app-alerts',
   templateUrl: './alerts.component.html',
@@ -15,6 +16,7 @@ export class AlertsComponent implements OnInit {
     protected alertsService: AlertsService
   ) { }
 
+  /** Initialises the component and subscribes to tha aler subject in the alerts service */
   ngOnInit() {
     this.alertsService.messages.asObservable().subscribe(
       (alert) => {
@@ -27,8 +29,9 @@ export class AlertsComponent implements OnInit {
     );
   }
 
+  /** Removes an alert from the alert view */
   remove(alert: string): void {
-    this.alerts = this.alerts.splice( this.alerts.indexOf(alert), 1 );
+    this.alerts.splice( this.alerts.indexOf(alert), 1 );
   }
 
 }
